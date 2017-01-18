@@ -1,4 +1,3 @@
-
 var socket = io.connect("http://localhost:9092");
 
 var map;
@@ -55,13 +54,14 @@ function initMap() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(document.getElementById("map"), myOptions);
+    insertTerminals();
 }
 
 var numDeltas = 100;
-var delay = 100;
+var delay = 108;
 var deltaLat = [];
 var deltaLng = [];
-var icon = './images/Plane_marker_nano.png';
+var icon = './images/plane_marker.png';
 
 function transition(result, data){
     if (result.new === 0){
@@ -117,7 +117,10 @@ function moveMarker(id, data){
     }else {
       positions[a].pos[0] = 0;
       positions[a].pos[1] = 0;
-      console.log("Finish");
+      if (data.out == 1){
+    	  markers[a].setMap(null);
+    	  console.log("Finished : " +data.plane_id);
+      }
     }
   }
 }
@@ -183,28 +186,96 @@ function contains_lng(id) {
 	   }
 	return null;
 }
-=======
-var map;
-function initMap() {
 
-  var coords = [{lat: 43.0631988, lng: -2.5068561},
-  {lat: 34.0201813, lng: -118.6919193},
-  {lat: 41.2825124, lng: 69.139283},
-  {lat: -15.7217174, lng: -48.0783222},
-  {lat: 24.0226825, lng: -104.7177651},
-  {lat: 11.5793306, lng: 104.7437273}];
+function insertTerminals(){
+	
+	var colorGreen = '#D3D3D3';
+	
+	var terminal1 = new google.maps.Rectangle({
+		strokeColor: colorGreen,
+		strokeOpacity: 0.8,
+		strokeWeight: 2,
+		fillColor: colorGreen,
+		fillOpacity: 0.35,
+		map: map,
+		bounds: {
+			north: 51.47426561884851,
+			south: 51.46912714934835,
+			east:  -0.4391047172546223,
+			west: -0.4468787422180185
+		}
+	});
 
-  var mapOptions = {
-    zoom: 2,
-    center: {lat: 0, lng: 0}
-  };
+	var terminal2 = new google.maps.Rectangle({
+		strokeColor: colorGreen,
+		strokeOpacity: 0.8,
+		strokeWeight: 2,
+		fillColor: colorGreen,
+		fillOpacity: 0.35,
+		map: map,
+		bounds: {
+			north: 51.47426561884851,
+			south: 51.46912714934835,
+			east:  -0.4494043998718098,
+			west: -0.457178424835206
+		}
+	});
 
-  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	var terminal3 = new google.maps.Rectangle({
+		strokeColor: colorGreen,
+		strokeOpacity: 0.8,
+		strokeWeight: 2,
+		fillColor: colorGreen,
+		fillOpacity: 0.35,
+		map: map,
+		bounds: {
+			north: 51.47426561884851,
+			south: 51.46912714934835,
+			east:  -0.46137778091429027,
+			west: -0.46915180587768646
+		}
+	});
 
-  for (var i = 0; i < coords.length; i++) {
-   new google.maps.Marker({
-    position: coords[i],
-    map: map
-  });
- }
+	var terminal4 = new google.maps.Rectangle({
+		strokeColor: colorGreen,
+		strokeOpacity: 0.8,
+		strokeWeight: 2,
+		fillColor: colorGreen,
+		fillOpacity: 0.35,
+		map: map,
+		bounds: {
+			north: 51.47426561884851,
+			south: 51.46912714934835,
+			east:  -0.4734799079894856,
+			west: -0.48125393295288177
+		}
+	});
+	
+	var mark_t4 = new google.maps.Marker({
+		position: {lat: 51.46912714934835, lng: -0.4391047172546223},
+		map: map,
+		label: 'T1',
+		title: 'Terminal 1'
+	});
+
+	var mark_t3 = new google.maps.Marker({
+		position: {lat: 51.46912714934835, lng: -0.4494043998718098},
+		map: map,
+		label: 'T2',
+		title: 'Terminal 2'
+	});
+
+	var mark_t2 = new google.maps.Marker({
+		position: {lat: 51.46912714934835, lng:  -0.46137778091429027},
+		map: map,
+		label: 'T3',
+		title: 'Terminal 3'
+	});
+
+	var mark_t1 = new google.maps.Marker({
+		position: {lat: 51.46912714934835, lng:  -0.4734799079894856},
+		map: map,
+		label: 'T4',
+		title: 'Terminal 4'
+	});
 }
