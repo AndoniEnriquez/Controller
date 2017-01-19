@@ -1,0 +1,5 @@
+projectKey=Controller
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/Controller
+ceTaskId=AVm3-8_YrYuKFyf-PXzZ
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVm3-8_YrYuKFyf-PXzZ

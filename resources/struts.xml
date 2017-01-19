@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<package name="default" extends="struts-default" namespace="/">
+	
+		<action name="login" class="action.LoginAction" >
+            <result name="success" type="dispatcher">/index.jsp</result>
+            <result name="error" type="redirect">../Gonenpru/login.jsp</result>
+        </action>
+	
+	<!-- SHOW MAP -->
+	<action name="show_map" class="action.MapAction" method="execute">
+		<result name="success">index.jsp</result>
+	</action>
+
+	<!-- SHOW FLIGHTS TABLE -->
+	<action name="show_flights" class="action.FlightsAction" method="execute">
+		<result name="success">flightsTable.jsp</result>
+	</action>
+
+	<!-- SHOW PIE -->
+	<action name="show_pie" class="action.PieAction" method="execute">
+		<result name="success">pie.jsp</result>
+	</action>
+
+	<!-- SHOW FLOW -->
+	<action name="show_flow" class="action.FlowAction" method="execute">
+		<result name="success">flow.jsp</result>
+	</action>
+
+	</package>
+</struts>

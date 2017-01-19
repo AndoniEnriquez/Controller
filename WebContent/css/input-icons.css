@@ -1,0 +1,19 @@
+input[type="submit"] {
+	font-family: FontAwesome;
+	height: 32px;
+	width: 32px;
+	border: none;
+	position: relative;
+	margin-left: 8px;
+	font-size: 1.2em;
+}
+
+input[type="submit"]:hover{
+	color:#b8c9f1;
+}
+
+.grey-plane {
+	color: grey;
+	background-color: black;
+	
+}
